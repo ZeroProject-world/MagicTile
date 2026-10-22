@@ -23,6 +23,15 @@ final class GameLogic : ObservableObject {
     
     let objectWillChange = PassthroughSubject<GameLogic, Never>()
     
+    /// Current game score. Every merge adds the value of the tile it creates.
+    @Published private(set) var score: Int = 0
+    
+    /// All-time best score, persisted across launches.
+    @Published private(set) var bestScore: Int = UserDefaults.standard.integer(forKey: "MagicTileBestScore")
+    
+    /// True when the board is full and no moves remain.
+    @Published private(set) var isGameOver: Bool = false
+    
     fileprivate var _blockMatrix: BlockMatrixType!
     var blockMatrix: BlockMatrixType {
         return _blockMatrix
@@ -42,6 +51,8 @@ final class GameLogic : ObservableObject {
     
     func newGame() {
         _blockMatrix = BlockMatrixType()
+        score = 0
+        isGameOver = false
         resetLastGestureDirection()
         generateNewBlocks()
         
@@ -99,6 +110,31 @@ final class GameLogic : ObservableObject {
         if moved {
             generateNewBlocks()
         }
+        
+        if score > bestScore {
+            bestScore = score
+            UserDefaults.standard.set(bestScore, forKey: "MagicTileBestScore")
+        }
+        
+        checkGameOver()
+    }
+    
+    /// The game ends when no cell is empty and no two neighbours match.
+    fileprivate func checkGameOver() {
+        for row in 0..<4 {
+            for col in 0..<4 {
+                guard let block = _blockMatrix[(col, row)] else {
+                    return  // An empty cell means a move is still possible.
+                }
+                if col < 3 && _blockMatrix[(col + 1, row)]?.number == block.number {
+                    return  // A horizontal merge is still possible.
+                }
+                if row < 3 && _blockMatrix[(col, row + 1)]?.number == block.number {
+                    return  // A vertical merge is still possible.
+                }
+            }
+        }
+        isGameOver = true
     }
     
     fileprivate func merge(blocks: inout [IdentifiedBlock], reverse: Bool) {
@@ -113,6 +149,7 @@ final class GameLogic : ObservableObject {
                     var accPrefix = Array(acc.dropLast())
                     var mergedBlock = item.1
                     mergedBlock.number *= 2
+                    self.score += mergedBlock.number
                     accPrefix.append((true, mergedBlock))
                     return accPrefix
                 } else {

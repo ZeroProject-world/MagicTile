@@ -28,6 +28,7 @@ extension Edge {
 struct GameView : View {
     
     @State var ignoreGesture = false
+    @State var showNewGameConfirm = false
     @EnvironmentObject var gameLogic: GameLogic
     
     fileprivate struct LayoutTraits {
@@ -96,37 +97,128 @@ struct GameView : View {
         return drag
     }
     
-    var content: some View {
-        GeometryReader { proxy in
-            bind(self.layoutTraits(for: proxy)) { layoutTraits in
-                ZStack(alignment: layoutTraits.containerAlignment) {
-                    if layoutTraits.showsBanner {
-                        Text("Magic Tile")
-                            .font(Font.system(size: 40).weight(.black))
-                            .foregroundColor(Color.white)
-                            .shadow(color: Color.black.opacity(0.35), radius: 4, x: 0, y: 2)
-                            .offset(layoutTraits.bannerOffset)
-                    }
-                    
-                    ZStack(alignment: .center) {
-                        BlockGridView(matrix: self.gameLogic.blockMatrix,
-                                      blockEnterEdge: .from(self.gameLogic.lastGestureDirection))
-                    }
-                    .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
-                }
-                .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
+    fileprivate func scoreCard(title: String, value: Int) -> some View {
+        VStack(spacing: 1) {
+            Text(title)
+                .font(Font.system(size: 10).weight(.bold))
+                .foregroundColor(Color.white.opacity(0.75))
+            Text("\(value)")
+                .font(Font.system(size: 20).weight(.heavy))
+                .foregroundColor(Color.white)
+        }
+        .frame(minWidth: 62)
+        .padding(EdgeInsets(top: 6, leading: 10, bottom: 6, trailing: 10))
+        .background(
+            RoundedRectangle(cornerRadius: 10)
+                .fill(Color.white.opacity(0.16))
+        )
+    }
+    
+    var newGameButton: some View {
+        Button(action: {
+            if self.gameLogic.score > 0 && !self.gameLogic.isGameOver {
+                self.showNewGameConfirm = true
+            } else {
+                self.gameLogic.newGame()
+            }
+        }) {
+            Text("New Game")
+                .font(Font.system(size: 17).weight(.bold))
+                .foregroundColor(Color.white)
+                .padding(EdgeInsets(top: 11, leading: 30, bottom: 11, trailing: 30))
                 .background(
-                    Rectangle()
+                    RoundedRectangle(cornerRadius: 12)
                         .fill(LinearGradient(
                             gradient: Gradient(colors: [
-                                Color(red:0.13, green:0.08, blue:0.30, opacity:1.00),
-                                Color(red:0.24, green:0.12, blue:0.45, opacity:1.00),
-                                Color(red:0.10, green:0.06, blue:0.22, opacity:1.00)
+                                Color(red:0.42, green:0.26, blue:0.85, opacity:1.00),
+                                Color(red:0.30, green:0.17, blue:0.62, opacity:1.00)
                             ]),
                             startPoint: .top, endPoint: .bottom))
-                        .edgesIgnoringSafeArea(.all)
+                        .shadow(color: Color.black.opacity(0.35), radius: 4, x: 0, y: 3)
                 )
+        }
+        .alert(isPresented: $showNewGameConfirm) {
+            Alert(
+                title: Text("Start a new game?"),
+                message: Text("Your current game will be lost."),
+                primaryButton: .destructive(Text("New Game")) {
+                    self.gameLogic.newGame()
+                },
+                secondaryButton: .cancel()
+            )
+        }
+    }
+    
+    var gameOverOverlay: some View {
+        ZStack {
+            Color.black.opacity(0.5)
+                .edgesIgnoringSafeArea(.all)
+            VStack(spacing: 10) {
+                Text("Game Over")
+                    .font(Font.system(size: 32).weight(.black))
+                    .foregroundColor(Color.white)
+                Text("Score: \(self.gameLogic.score)")
+                    .font(Font.system(size: 18).weight(.semibold))
+                    .foregroundColor(Color.white.opacity(0.9))
+                Text("Best: \(self.gameLogic.bestScore)")
+                    .font(Font.system(size: 14).weight(.medium))
+                    .foregroundColor(Color.white.opacity(0.7))
+                Button(action: { self.gameLogic.newGame() }) {
+                    Text("Play Again")
+                        .font(Font.system(size: 17).weight(.bold))
+                        .foregroundColor(Color(red:0.24, green:0.14, blue:0.50, opacity:1.00))
+                        .padding(EdgeInsets(top: 11, leading: 26, bottom: 11, trailing: 26))
+                        .background(RoundedRectangle(cornerRadius: 12).fill(Color.white))
+                }
+                .padding(.top, 6)
             }
+            .padding(28)
+            .background(
+                RoundedRectangle(cornerRadius: 16)
+                    .fill(Color(red:0.19, green:0.13, blue:0.40, opacity:1.00))
+                    .shadow(color: Color.black.opacity(0.5), radius: 12, x: 0, y: 6)
+            )
+            .padding(36)
+        }
+    }
+    
+    var content: some View {
+        GeometryReader { proxy in
+            ZStack {
+                Rectangle()
+                    .fill(LinearGradient(
+                        gradient: Gradient(colors: [
+                            Color(red:0.13, green:0.08, blue:0.30, opacity:1.00),
+                            Color(red:0.24, green:0.12, blue:0.45, opacity:1.00),
+                            Color(red:0.10, green:0.06, blue:0.22, opacity:1.00)
+                        ]),
+                        startPoint: .top, endPoint: .bottom))
+                    .edgesIgnoringSafeArea(.all)
+                
+                VStack(spacing: 14) {
+                    HStack(alignment: .center, spacing: 10) {
+                        Text("Magic Tile")
+                            .font(Font.system(size: 30).weight(.black))
+                            .foregroundColor(Color.white)
+                            .shadow(color: Color.black.opacity(0.35), radius: 4, x: 0, y: 2)
+                        Spacer()
+                        self.scoreCard(title: "SCORE", value: self.gameLogic.score)
+                        self.scoreCard(title: "BEST", value: self.gameLogic.bestScore)
+                    }
+                    
+                    BlockGridView(matrix: self.gameLogic.blockMatrix,
+                                  blockEnterEdge: .from(self.gameLogic.lastGestureDirection))
+                        .frame(maxWidth: .infinity, maxHeight: .infinity)
+                    
+                    self.newGameButton
+                }
+                .padding(16)
+                
+                if self.gameLogic.isGameOver {
+                    self.gameOverOverlay
+                }
+            }
+            .frame(width: proxy.size.width, height: proxy.size.height)
         }
     }
     

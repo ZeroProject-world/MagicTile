@@ -197,8 +197,10 @@ struct GameView : View {
                 
                 VStack(spacing: 14) {
                     HStack(alignment: .center, spacing: 10) {
-                        Text("Magic Tile")
-                            .font(Font.system(size: 30).weight(.black))
+                        Text("Magic Tile Merge")
+                            .font(Font.system(size: 25).weight(.black))
+                            .lineLimit(1)
+                            .minimumScaleFactor(0.7)
                             .foregroundColor(Color.white)
                             .shadow(color: Color.black.opacity(0.35), radius: 4, x: 0, y: 2)
                         Spacer()

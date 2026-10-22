@@ -1,5 +1,5 @@
 //
-//  InterstitialAd.swift
+//  InterstitialAdManager.swift
 //  MagicTile
 //
 //  Preloads one full-screen AdMob interstitial and shows it on demand
@@ -9,11 +9,11 @@
 import GoogleMobileAds
 import UIKit
 
-final class InterstitialAd: NSObject, GADFullScreenContentDelegate {
+final class InterstitialAdManager: NSObject, FullScreenContentDelegate {
     
-    static let shared = InterstitialAd()
+    static let shared = InterstitialAdManager()
     
-    private var ad: GADInterstitialAd?
+    private var ad: InterstitialAd?
     
     private override init() {
         super.init()
@@ -21,8 +21,8 @@ final class InterstitialAd: NSObject, GADFullScreenContentDelegate {
     }
     
     func load() {
-        GADInterstitialAd.load(withAdUnitID: AdConfig.interstitialUnitID,
-                               request: GADRequest()) { [weak self] ad, error in
+        InterstitialAd.load(with: AdConfig.interstitialUnitID,
+                            request: Request()) { [weak self] ad, error in
             if let error = error {
                 print("Interstitial failed to load: \(error.localizedDescription)")
                 return
@@ -37,7 +37,7 @@ final class InterstitialAd: NSObject, GADFullScreenContentDelegate {
             load()  // Not ready yet — prepare one for next time.
             return
         }
-        ad.present(fromRootViewController: root)
+        ad.present(from: root)
     }
     
     private func topViewController() -> UIViewController? {
@@ -52,12 +52,12 @@ final class InterstitialAd: NSObject, GADFullScreenContentDelegate {
     
     // MARK: - GADFullScreenContentDelegate
     
-    func adDidDismissFullScreenContent(_ ad: GADFullScreenPresentingAd) {
+    func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
         self.ad = nil
         load()
     }
     
-    func ad(_ ad: GADFullScreenPresentingAd,
+    func ad(_ ad: FullScreenPresentingAd,
             didFailToPresentFullScreenContentWithError error: Error) {
         self.ad = nil
         load()

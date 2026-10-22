@@ -20,7 +20,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         gameLogic = GameLogic()
         
-        GADMobileAds.sharedInstance().start(completionHandler: nil)
+        MobileAds.shared.start()
         
         
         return true

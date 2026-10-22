@@ -223,7 +223,7 @@ struct GameView : View {
                     self.gameOverOverlay
                         .onAppear {
                             #if os(iOS)
-                            InterstitialAd.shared.show()
+                            InterstitialAdManager.shared.show()
                             #endif
                         }
                 }

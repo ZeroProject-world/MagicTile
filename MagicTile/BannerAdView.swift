@@ -10,15 +10,15 @@ import GoogleMobileAds
 
 struct BannerAdView: UIViewRepresentable {
     
-    func makeUIView(context: Context) -> GADBannerView {
-        let banner = GADBannerView(adSize: GADAdSizeBanner)
+    func makeUIView(context: Context) -> BannerView {
+        let banner = BannerView(adSize: AdSizeBanner)
         banner.adUnitID = AdConfig.bannerUnitID
         banner.rootViewController = rootViewController()
-        banner.load(GADRequest())
+        banner.load(Request())
         return banner
     }
     
-    func updateUIView(_ uiView: GADBannerView, context: Context) {
+    func updateUIView(_ uiView: BannerView, context: Context) {
         // Nothing to update.
     }
     

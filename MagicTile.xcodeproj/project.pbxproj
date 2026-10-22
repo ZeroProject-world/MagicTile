@@ -36,7 +36,7 @@
 		AD00000000000000000000E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00000000000000000000E1 /* SceneDelegate.swift */; };
 		AD00000000000000000000B2 /* AdConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00000000000000000000B1 /* AdConfig.swift */; };
 		AD00000000000000000000C2 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00000000000000000000C1 /* BannerAdView.swift */; };
-		AD00000000000000000000D2 /* InterstitialAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00000000000000000000D1 /* InterstitialAd.swift */; };
+		AD00000000000000000000D2 /* InterstitialAdManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00000000000000000000D1 /* InterstitialAdManager.swift */; };
 		AD00000000000000000000A3 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = AD00000000000000000000A2 /* GoogleMobileAds */; };
 /* End PBXBuildFile section */
 
@@ -83,7 +83,7 @@
 		AD00000000000000000000E1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		AD00000000000000000000B1 /* AdConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdConfig.swift; sourceTree = "<group>"; };
 		AD00000000000000000000C1 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
-		AD00000000000000000000D1 /* InterstitialAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAd.swift; sourceTree = "<group>"; };
+		AD00000000000000000000D1 /* InterstitialAdManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAdManager.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -145,7 +145,7 @@
 				FA633E1E22A77D1C00DE6288 /* AppDelegate.swift */,
 				AD00000000000000000000B1 /* AdConfig.swift */,
 				AD00000000000000000000C1 /* BannerAdView.swift */,
-				AD00000000000000000000D1 /* InterstitialAd.swift */,
+				AD00000000000000000000D1 /* InterstitialAdManager.swift */,
 				AD00000000000000000000E1 /* SceneDelegate.swift */,
 				FA633E2422A77D1D00DE6288 /* Assets.xcassets */,
 				FA633E2922A77D1D00DE6288 /* LaunchScreen.storyboard */,
@@ -317,7 +317,7 @@
 			files = (
 				AD00000000000000000000B2 /* AdConfig.swift in Sources */,
 				AD00000000000000000000C2 /* BannerAdView.swift in Sources */,
-				AD00000000000000000000D2 /* InterstitialAd.swift in Sources */,
+				AD00000000000000000000D2 /* InterstitialAdManager.swift in Sources */,
 				AD00000000000000000000E2 /* SceneDelegate.swift in Sources */,
 				FA633E3F22A7BDBB00DE6288 /* IdentifiedBlock.swift in Sources */,
 				FA6F2B2122A81832009C2D3B /* FunctionalUtils.swift in Sources */,

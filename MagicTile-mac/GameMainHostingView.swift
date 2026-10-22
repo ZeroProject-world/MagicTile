@@ -1,6 +1,6 @@
 //
 //  GameMainHostingView.swift
-//  2048
+//  MagicTile
 //
 //  Created by Hongyu on 6/9/19.
 //  Copyright © 2019 Cyandev. All rights reserved.

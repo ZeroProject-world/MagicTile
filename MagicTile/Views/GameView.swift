@@ -1,6 +1,6 @@
 //
 //  GameView.swift
-//  SwiftUI2048
+//  MagicTile
 //
 //  Created by Hongyu on 6/5/19.
 //  Copyright © 2019 Cyandev. All rights reserved.
@@ -101,7 +101,7 @@ struct GameView : View {
             bind(self.layoutTraits(for: proxy)) { layoutTraits in
                 ZStack(alignment: layoutTraits.containerAlignment) {
                     if layoutTraits.showsBanner {
-                        Text("Meggic Tile")
+                        Text("Magic Tile")
                             .font(Font.system(size: 40).weight(.black))
                             .foregroundColor(Color.white)
                             .shadow(color: Color.black.opacity(0.35), radius: 4, x: 0, y: 2)

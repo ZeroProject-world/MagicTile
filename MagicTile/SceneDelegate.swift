@@ -1,6 +1,6 @@
 //
 //  SceneDelegate.swift
-//  SwiftUI2048
+//  MagicTile
 //
 //  Scene-based life cycle (required by modern iOS SDKs).
 //  Creates the window inside the scene and hosts the game view.

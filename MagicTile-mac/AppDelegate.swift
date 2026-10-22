@@ -1,6 +1,6 @@
 //
 //  AppDelegate.swift
-//  SwiftUI2048-mac
+//  MagicTile-mac
 //
 //  Created by Hongyu on 6/9/19.
 //  Copyright © 2019 Cyandev. All rights reserved.

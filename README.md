@@ -1,17 +1,7 @@
-#  2048 Game (SwiftUI app)
+# Magic Tile
 
-This is a simple game to demonstrate the new SwiftUI framework.
+A number-merging puzzle game for iOS, built with SwiftUI.
+Slide the tiles; when two tiles with the same number touch, they merge into one.
 
-> Note that the game algorithm may have issues, and this is still WIP.
-
-![Screenshot](Screenshot.png)
-
-## Supported Platforms
-
-* iOS 13.0+
-* macOS 10.15+
-* macOS 11+ (macCatalyst version) 
-
-## License
-
-MIT
+Originally developed from an open-source SwiftUI project by Hongyu (Cyandev),
+used under the MIT License — see LICENSE. Restyled and rebranded as Magic Tile.

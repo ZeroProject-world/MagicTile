@@ -1,11 +1,11 @@
 //
 //  BlockView.swift
-//  SwiftUI2048
+//  MagicTile
 //
 //  Created by Hongyu on 6/5/19.
 //  Copyright © 2019 Cyandev. All rights reserved.
 //
-//  Meggic Tile restyle: tiles are drawn as glossy 3D blocks —
+//  Magic Tile restyle: tiles are drawn as glossy 3D blocks —
 //  a vertical gradient body, a gloss highlight on the top half,
 //  a shaded bottom edge, an embossed number and a soft drop shadow.
 //  Game logic is untouched; only the drawing changed.
@@ -15,7 +15,7 @@ import SwiftUI
 
 struct BlockView : View {
 
-    // (top color, bottom color, text color) per tile value: 2, 4, 8, ... 2048
+    // (top color, bottom color, text color) per tile value: 2, 4, 8, ... and up
     fileprivate let colorScheme: [(Color, Color, Color)] = [
         // 2
         (Color(red:0.96, green:0.90, blue:0.78, opacity:1.00), Color(red:0.89, green:0.80, blue:0.62, opacity:1.00), Color(red:0.36, green:0.29, blue:0.19, opacity:1.00)),
@@ -37,7 +37,7 @@ struct BlockView : View {
         (Color(red:0.94, green:0.73, blue:0.20, opacity:1.00), Color(red:0.85, green:0.55, blue:0.06, opacity:1.00), Color.white),
         // 1024
         (Color(red:0.93, green:0.68, blue:0.14, opacity:1.00), Color(red:0.82, green:0.50, blue:0.03, opacity:1.00), Color.white),
-        // 2048
+        // top tile
         (Color(red:0.95, green:0.72, blue:0.10, opacity:1.00), Color(red:0.85, green:0.54, blue:0.02, opacity:1.00), Color.white),
     ]
 

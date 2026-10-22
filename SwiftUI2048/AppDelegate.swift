@@ -19,11 +19,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         gameLogic = GameLogic()
         
-        window = UIWindow(frame: UIScreen.main.bounds)
-        window!.rootViewController = UIHostingController(rootView:
-            GameView().environmentObject(gameLogic)
-        )
-        window!.makeKeyAndVisible()
         
         return true
     }

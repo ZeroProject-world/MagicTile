@@ -101,9 +101,10 @@ struct GameView : View {
             bind(self.layoutTraits(for: proxy)) { layoutTraits in
                 ZStack(alignment: layoutTraits.containerAlignment) {
                     if layoutTraits.showsBanner {
-                        Text("2048")
-                            .font(Font.system(size: 48).weight(.black))
-                            .foregroundColor(Color(red:0.47, green:0.43, blue:0.40, opacity:1.00))
+                        Text("Meggic Tile")
+                            .font(Font.system(size: 40).weight(.black))
+                            .foregroundColor(Color.white)
+                            .shadow(color: Color.black.opacity(0.35), radius: 4, x: 0, y: 2)
                             .offset(layoutTraits.bannerOffset)
                     }
                     
@@ -116,7 +117,13 @@ struct GameView : View {
                 .frame(width: proxy.size.width, height: proxy.size.height, alignment: .center)
                 .background(
                     Rectangle()
-                        .fill(Color(red:0.96, green:0.94, blue:0.90, opacity:1.00))
+                        .fill(LinearGradient(
+                            gradient: Gradient(colors: [
+                                Color(red:0.13, green:0.08, blue:0.30, opacity:1.00),
+                                Color(red:0.24, green:0.12, blue:0.45, opacity:1.00),
+                                Color(red:0.10, green:0.06, blue:0.22, opacity:1.00)
+                            ]),
+                            startPoint: .top, endPoint: .bottom))
                         .edgesIgnoringSafeArea(.all)
                 )
             }

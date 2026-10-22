@@ -125,16 +125,34 @@ struct BlockGridView : View {
                 self.createBlock($0.item, at: $0.index)
             }
             .zIndex(1000)
-            .animation(.interactiveSpring(response: 0.4, dampingFraction: 0.8))
+            .animation(.interactiveSpring(response: 0.4, dampingFraction: 0.8),
+                       value: self.matrix.flatten.map { "\($0.item.id):\($0.item.number)" }.joined(separator: ","))
         }
         .frame(width: 320, height: 320, alignment: .center)
         .background(
-            Rectangle()
-                .fill(Color(red:0.72, green:0.66, blue:0.63, opacity:1.00))
+            // The board is a carved wooden-style tray: gradient body,
+            // a lit top rim, and a soft shadow lifting it off the backdrop.
+            RoundedRectangle(cornerRadius: 14, style: .continuous)
+                .fill(LinearGradient(
+                    gradient: Gradient(colors: [
+                        Color(red:0.45, green:0.36, blue:0.30, opacity:1.00),
+                        Color(red:0.33, green:0.25, blue:0.20, opacity:1.00)
+                    ]),
+                    startPoint: .top, endPoint: .bottom))
+                .overlay(
+                    RoundedRectangle(cornerRadius: 14, style: .continuous)
+                        .stroke(LinearGradient(
+                            gradient: Gradient(colors: [
+                                Color.white.opacity(0.25),
+                                Color.black.opacity(0.30)
+                            ]),
+                            startPoint: .top, endPoint: .bottom), lineWidth: 1)
+                )
         )
         .clipped()
-        .cornerRadius(6)
+        .cornerRadius(14)
         .drawingGroup(opaque: false, colorMode: .linear)
+        .shadow(color: Color.black.opacity(0.45), radius: 14, x: 0, y: 8)
     }
     
 }

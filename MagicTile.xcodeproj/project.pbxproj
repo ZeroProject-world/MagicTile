@@ -34,6 +34,10 @@
 		FA8D101122AD0F1F0056756D /* GameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA633E3A22A79B1200DE6288 /* GameView.swift */; };
 		FA8D101222AD0F3E0056756D /* FunctionalUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA6F2B2022A81832009C2D3B /* FunctionalUtils.swift */; };
 		FA8D101522AD137D0056756D /* GameMainHostingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FA8D101322AD13230056756D /* GameMainHostingView.swift */; };
+		AD00000000000000000000A3 /* GoogleMobileAds in Frameworks */ = {isa = PBXBuildFile; productRef = AD00000000000000000000A2 /* GoogleMobileAds */; };
+		AD00000000000000000000B2 /* AdConfig.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00000000000000000000B1 /* AdConfig.swift */; };
+		AD00000000000000000000C2 /* BannerAdView.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00000000000000000000C1 /* BannerAdView.swift */; };
+		AD00000000000000000000D2 /* InterstitialAd.swift in Sources */ = {isa = PBXBuildFile; fileRef = AD00000000000000000000D1 /* InterstitialAd.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -77,6 +81,9 @@
 		FA8D100722AD0E950056756D /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		FA8D100822AD0E950056756D /* MagicTile_mac.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = MagicTile_mac.entitlements; sourceTree = "<group>"; };
 		FA8D101322AD13230056756D /* GameMainHostingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GameMainHostingView.swift; sourceTree = "<group>"; };
+		AD00000000000000000000B1 /* AdConfig.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdConfig.swift; sourceTree = "<group>"; };
+		AD00000000000000000000C1 /* BannerAdView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BannerAdView.swift; sourceTree = "<group>"; };
+		AD00000000000000000000D1 /* InterstitialAd.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InterstitialAd.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -84,6 +91,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD00000000000000000000A3 /* GoogleMobileAds in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -135,6 +143,9 @@
 				FA633E3522A7926200DE6288 /* Models */,
 				FA633E3222A77D3400DE6288 /* Views */,
 				FA633E1E22A77D1C00DE6288 /* AppDelegate.swift */,
+				AD00000000000000000000B1 /* AdConfig.swift */,
+				AD00000000000000000000C1 /* BannerAdView.swift */,
+				AD00000000000000000000D1 /* InterstitialAd.swift */,
 				D15C0DE10000000000000A01 /* SceneDelegate.swift */,
 				FA633E2422A77D1D00DE6288 /* Assets.xcassets */,
 				FA633E2922A77D1D00DE6288 /* LaunchScreen.storyboard */,
@@ -213,6 +224,9 @@
 			name = MagicTile;
 			productName = MagicTile;
 			productReference = FA633E1B22A77D1C00DE6288 /* MagicTile.app */;
+			packageProductDependencies = (
+				AD00000000000000000000A2 /* GoogleMobileAds */,
+			);
 			productType = "com.apple.product-type.application";
 		};
 		FA8D0FF822AD0E8E0056756D /* MagicTile(macOS) */ = {
@@ -258,6 +272,9 @@
 				en,
 				Base,
 			);
+			packageReferences = (
+				AD00000000000000000000A1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */,
+			);
 			mainGroup = FA633E1222A77D1C00DE6288;
 			productRefGroup = FA633E1C22A77D1C00DE6288 /* Products */;
 			projectDirPath = "";
@@ -298,6 +315,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AD00000000000000000000B2 /* AdConfig.swift in Sources */,
+				AD00000000000000000000C2 /* BannerAdView.swift in Sources */,
+				AD00000000000000000000D2 /* InterstitialAd.swift in Sources */,
 				FA633E3F22A7BDBB00DE6288 /* IdentifiedBlock.swift in Sources */,
 				FA6F2B2122A81832009C2D3B /* FunctionalUtils.swift in Sources */,
 				FA633E3922A79AFA00DE6288 /* GameLogic.swift in Sources */,
@@ -592,3 +612,23 @@
 	};
 	rootObject = FA633E1322A77D1C00DE6288 /* Project object */;
 }
+/* Begin XCRemoteSwiftPackageReference section */
+		AD00000000000000000000A1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/googleads/swift-package-manager-google-mobile-ads.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 12.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		AD00000000000000000000A2 /* GoogleMobileAds */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = AD00000000000000000000A1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */;
+			productName = GoogleMobileAds;
+		};
+/* End XCSwiftPackageProductDependency section */
+
+

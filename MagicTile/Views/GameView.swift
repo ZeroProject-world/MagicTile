@@ -211,11 +211,21 @@ struct GameView : View {
                         .frame(maxWidth: .infinity, maxHeight: .infinity)
                     
                     self.newGameButton
+                    
+                    #if os(iOS)
+                    BannerAdView()
+                        .frame(height: 50)
+                    #endif
                 }
                 .padding(16)
                 
                 if self.gameLogic.isGameOver {
                     self.gameOverOverlay
+                        .onAppear {
+                            #if os(iOS)
+                            InterstitialAd.shared.show()
+                            #endif
+                        }
                 }
             }
             .frame(width: proxy.size.width, height: proxy.size.height)

@@ -50,7 +50,7 @@ final class InterstitialAdManager: NSObject, FullScreenContentDelegate {
         return controller
     }
     
-    // MARK: - GADFullScreenContentDelegate
+    // MARK: - FullScreenContentDelegate
     
     func adDidDismissFullScreenContent(_ ad: FullScreenPresentingAd) {
         self.ad = nil

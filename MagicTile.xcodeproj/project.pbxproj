@@ -609,9 +609,6 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
-	};
-	rootObject = FA633E1322A77D1C00DE6288 /* Project object */;
-}
 /* Begin XCRemoteSwiftPackageReference section */
 		AD00000000000000000000A1 /* XCRemoteSwiftPackageReference "swift-package-manager-google-mobile-ads" */ = {
 			isa = XCRemoteSwiftPackageReference;
@@ -630,5 +627,6 @@
 			productName = GoogleMobileAds;
 		};
 /* End XCSwiftPackageProductDependency section */
-
-
+	};
+	rootObject = FA633E1322A77D1C00DE6288 /* Project object */;
+}
